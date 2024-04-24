@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ede5766e-224e-42b3-af62-cba4cb54fe02&lang=ru_RU" type="text/javascript"></script>
+    <title>TestTask Webbee</title>
+</head>
+
+    
+    <body style="display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 0;">
+        <header>
+            <div class="header-top">
+                <div class="left">
+                    <img src="icons/arrow.png" alt="Иконка">
+                    <label><strong>User pages</strong> - Profile</label>
+                </div>
+                <div class="right">
+                    <div class="icon-block">
+                        <img src="icons/statistics.png" alt="Иконка"><br>
+                        <a href="#">Statistics</a>
+                    </div>
+                    <div class="icon-block">
+                        <img src="icons/invoces.png" alt="Иконка"><br>
+                        <a href="#">Invoces</a>
+                    </div>
+                    <div class="icon-block">
+                        <img src="icons/schedule.png" alt="Иконка"><br>
+                        <a href="#">Schedule</a>
+                    </div>
+                </div>  <!--left -->
+            </div> <!--header-top -->
+            <div class="header-bot">
+                <div class="left" style="height: 100%;">
+                    <a href="#" class="nav-block active" onclick="loadNewPage('index.html');" style="height: 100%;">
+                        <div style="display: flex; align-items: center;">
+                            <img src="icons/activity.png" alt="Иконка">
+                            <label class="switch" style="margin: 0 0 0 5px; cursor: pointer;">Activity</label>
+                        </div>
+                    </a>
+                    <a href="#" class="nav-block" onclick="loadNewPage('map.html');">
+                        <div style="display: flex; align-items: center;">
+                            <img src="icons/map.png" alt="Иконка">
+                            <label style="margin: 0 0 0 5px; cursor: pointer;">Map</label>
+                        </div>
+                    </a>
+                    <a href="#" class="nav-block" onclick="loadNewPage('timer.html');">
+                        <div style="display: flex; align-items: center;">
+                            <img AddEventLis src="icons/time.png" alt="Иконка">
+                            <label style="margin: 0 0 0 5px; cursor: pointer;">Time</label>
+                        </div>
+                    </a>
+                </div>  <!--left -->
+                <div class="right">
+                    <div class="nav-block">
+                        <img src="icons/notes.png" alt="Иконка">
+                        <a href="#">Notes</a>
+                    </div>
+                    <div class="nav-block">
+                        <img src="icons/friends.png" alt="Иконка">
+                        <a href="#">Friends</a>
+                    </div>
+                    <div class="nav-block">
+                        <img src="icons/photos.png" alt="Иконка">
+                        <a href="#">Photos</a>
+                    </div>
+                    <div class="settings">
+                        <img src="icons/settings.png" alt="Иконка">
+                        <img src="icons/small arrow.png" alt="Иконка">
+                    </div>
+                </div>  <!--right -->
+            </div> <!--header-bot -->
+        </header>
+    <div class="container">
+        <div class="first">
+            <div class="big-block">
+                <img class="main-photo" id="main-photo" src="img/abstract-purple-digital-art-retrowave-wallpaper 1.jpg" alt="Photo">
+                <div class="text-block">
+                    <div class="block">
+                        <img src="icons/comment.png" alt="Иконка">
+                        <label><strong style="color: #5095EC;">Jason Anderson</strong> commented:</label>
+                    </div>
+                    <div class="block" style="border-left: 2px solid #D3D8DE;">
+                        <label style="margin-left: 5px;">Don’t sit and wait. Get out there, feel life. Touch the sun, and immerse in the sea. Keep love in your heart.
+                             A life without it is like a sunless garden when the flowers are dead. Because summer is passion, memories, light breeze,
+                            the sun that appears on the skin and caresses the face. 
+                        </label>
+                        <label style="color: #8F8F8F; margin: 10px 0 0 5px"> - Jason, 10:30 am</label>
+                    </div>
+                    <div class="block">
+                        <span style="margin-right: 40px;">
+                            <img src="icons/eye.png" alt="Иконка">
+                            <label>432</label>
+                        </span>
+                        <span>
+                            <img src="icons/comment.png" alt="Иконка">
+                           <label>47</label>
+                        </span>
+                    </div>
+                </div>
+            </div><!--big-block -->
+            <div class="small-block">
+                <label>Sunsent Sunset Sunset</label>
+                <div>
+                    <img src="icons/clock.png" alt="Иконка">
+                    <label style="padding: 0 10px;">53 minutes ago</label>
+                    <img style="width: 30px; height: 30px;" src="icons/small arrow.png" alt="Иконка">
+                </div>
+            </div>
+            <div class="small-block">
+                <label>Morning of Siberia</label>
+                <div>
+                    <img src="icons/clock.png" alt="Иконка">
+                    <label style="padding: 0 10px;">56 minutes ago</label>
+                    <img style="width: 30px; height: 30px;" src="icons/small arrow.png" alt="Иконка">
+                </div>
+            </div>
+        </div>
+            
+        <div class="second">
+            <div class="aside">
+                <div class="aside_block">
+                    <div class="content">
+                        <img class="mygirl" src="img/girl.png" alt="">
+                            <div>
+                                <strong>Hanna Dorman</strong> <br>
+                                <label style="color: #D3D8DE;">UX/UI designer</label>
+                            </div>
+                        <div class="icons">
+                            <img src="icons/telegram.png" alt="Иконки">
+                            <img class="icons-padding" style="padding: 0 5px;" src="icons/hh.png" alt="Иконки">
+                            <img src="icons/twitter.png" alt="Иконки">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aside_block" style="margin-top: 40px;">              
+                    <div class="box">
+                        <a href="#" style="padding-left: 10px; font-weight: bold;" class="navigations">Navigations</a>
+                        <img src="icons/backarrow.png" alt="Иконки" style="padding-right: 10px;" class="delete">
+                    </div>
+                    <div class="box space">
+                        <div class="pff">
+                            <img src="icons/profile.png" alt="Иконки" class="navigations-icon">
+                            <a href="#">My profile</a>
+                        </div>
+                    </div class="box">
+                    <div class="box">
+                        <div class="pff">
+                            <img src="icons/balance.png" alt="Иконки" class="navigations-icon" >
+                            <a href="#">Balance</a>
+                        </div>
+                        <label class="delete" style="padding-right: 10px; color: #D3D8DE;">$ 1,430</label>
+                    </div>
+                    <div class="box">
+                        <div class="pff">
+                            <div class="pff">
+                                <img src="icons/connections.png" alt="Иконки" class="navigations-icon">
+                                <a href="#">Connections</a>
+                            </div>
+                        </div>
+                        <label style="float: right; margin-right: 10px;" class="navigations-right red delete">29</label>
+                    </div>
+                    <div class="box">
+                        <div class="pff">
+                            <img src="icons/friends.png" alt="Иконки" class="navigations-icon">
+                            <a href="#">Friends</a>
+                        </div>
+                    </div>
+                    <div class="box space">
+                        <div class="pff">
+                            <img src="icons/events.png" alt="Иконки" class="navigations-icon">
+                            <a href="#">Events</a>
+                        </div>
+                        <label style="margin-right: 10px;" class="navigations-right green delete">45</label>
+                    </div>
+                    <div class="box">
+                        <div class="pff">
+                            <img src="icons/settings.png" alt="Иконки" class="navigations-icon">
+                            <a href="#">Settings</a>
+                        </div>
+                    </div>
+    
+                 </div> 
+
+                <div class="aside_block last" style="margin-top: 40px;">
+                    <div class="share_top">
+                        <div style="padding: 0;">
+                            <label style="font-weight: bold; margin-top: 10px;">Share your thoughts</label>
+                            <img style="float: right;" src="icons/backarrow.png" alt="Иконка">
+                        </div>
+                    </div>
+                    <div style="padding-top: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <textarea>Enter your message</textarea> <br>
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Таймер визита</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ede5766e-224e-42b3-af62-cba4cb54fe02&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body style="display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 0;">
+<header>
+    <div class="header-top">
+        <div class="left">
+            <img src="icons/arrow.png" alt="Иконка">
+            <label><strong>User pages</strong> - Profile</label>
+        </div>
+        <div class="right">
+            <div class="icon-block">
+                <img src="icons/statistics.png" alt="Иконка"><br>
+                <a href="#">Statistics</a>
+            </div>
+            <div class="icon-block">
+                <img src="icons/invoces.png" alt="Иконка"><br>
+                <a href="#">Invoces</a>
+            </div>
+            <div class="icon-block">
+                <img src="icons/schedule.png" alt="Иконка"><br>
+                <a href="#">Schedule</a>
+            </div>
+        </div>  <!--left -->
+    </div> <!--header-top -->
+    <div class="header-bot">
+        <div class="left" style="height: 100%;">
+            <a href="#" class="nav-block" onclick="loadNewPage('index.html');" style="height: 100%;">
+                <div style="display: flex; align-items: center;">
+                    <img src="icons/activity.png" alt="Иконка">
+                    <label class="switch" style="margin: 0 0 0 5px; cursor: pointer;">Activity</label>
+                </div>
+            </a>
+            <a href="#" class="nav-block" onclick="loadNewPage('map.html');">
+                <div style="display: flex; align-items: center;">
+                    <img src="icons/map.png" alt="Иконка">
+                    <label style="margin: 0 0 0 5px; cursor: pointer;">Map</label>
+                </div>
+            </a>
+            <a href="#" class="nav-block active" onclick="loadNewPage('timer.html');">
+                <div style="display: flex; align-items: center;">
+                    <img AddEventLis src="icons/time.png" alt="Иконка">
+                    <label style="margin: 0 0 0 5px; cursor: pointer;">Time</label>
+                </div>
+            </a>
+        </div>  <!--left -->
+        <div class="right">
+            <div class="nav-block">
+                <img src="icons/notes.png" alt="Иконка">
+                <a href="#">Notes</a>
+            </div>
+            <div class="nav-block">
+                <img src="icons/friends.png" alt="Иконка">
+                <a href="#">Friends</a>
+            </div>
+            <div class="nav-block">
+                <img src="icons/photos.png" alt="Иконка">
+                <a href="#">Photos</a>
+            </div>
+            <div class="settings">
+                <img src="icons/settings.png" alt="Иконка">
+                <img src="icons/small arrow.png" alt="Иконка">
+            </div>
+        </div>  <!--right -->
+    </div> <!--header-bot -->
+</header>
+
+
+    <div id="timer">
+        <div class="timer_block">
+            <label>Timer</label>
+            <div style="padding-right: 40px;">
+                <img src="icons/backarrow.png" alt="Иконка">
+                <img src="icons/spinarrow.png" alt="Иконка">
+                <i class="bi bi-x-lg"></i>
+            </div>
+        </div>
+        <span style="padding-left: 40px;" id="timeSpent"></span>
+    </div>
+
+    <script type="text/javascript">
+        if (!sessionStorage.getItem('startTime')) {
+            sessionStorage.setItem('startTime', Date.now());
+        }
+
+        const startTime = sessionStorage.getItem('startTime');
+        const timeSpentElement = document.getElementById('timeSpent');
+
+        const formatTime = (milliseconds) => {
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        };
+
+        const updateTimeSpent = () => {
+            let currentTime = Date.now();
+            let timeSpent = currentTime - startTime;
+            timeSpentElement.textContent = formatTime(timeSpent);
+        };
+
+        setInterval(updateTimeSpent, 1000); // Обновляем каждую секунду
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
