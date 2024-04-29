@@ -1,6 +1,8 @@
+window.onload = loadPageContent()
+
+const startTime = Date.now();
 
 // Создание яндекс карты
-
 function initMap() {
     ymaps.ready(function () {
         document.querySelector('.preloader').style.display = 'block';
@@ -22,9 +24,6 @@ function initMap() {
     });
 }
 
-
-
-
 // SPA
 document.querySelectorAll('a').forEach(function (element) {
     element.addEventListener('click', function (event) {
@@ -37,16 +36,19 @@ document.querySelectorAll('a').forEach(function (element) {
     });
 });
 
-window.onpopstate = loadPageContent;
-
 function loadPageContent() {
     var a = document.getElementsByClassName('active')
     a[0].classList.remove('active')
-    let currentUrl = window.location.href + '.html'; 
-    if (currentUrl == 'http://localhost:3000/index.html' || currentUrl == 'http://localhost:3000/.html') {
-        currentUrl = '/activity.html'
+
+    let currentUrl = window.location.href;
+
+    if (currentUrl.endsWith('/') || currentUrl.endsWith('/index')) {
+        currentUrl = '/activity'
         document.getElementById('index10').classList.add('active')
     }
+
+    currentUrl += '.html'
+    
     fetch(currentUrl)
     .then(response => response.text())  
     .then(text => {
@@ -69,11 +71,7 @@ function loadPageContent() {
     .catch(error => console.error('Ошибка при загрузке контента:', error));
 }
 
-
-window.onload = function() {
-    loadPageContent()
-    startTime = Date.now()
-};
+window.onpopstate = loadPageContent;
 
 // Таймер
 function timer() { 
