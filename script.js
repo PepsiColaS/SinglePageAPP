@@ -1,4 +1,4 @@
-window.onload = loadPageContent()
+loadPageContent()
 
 const startTime = Date.now();
 
