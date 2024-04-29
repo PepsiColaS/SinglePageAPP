@@ -25,13 +25,58 @@ function initMap() {
 
 
 
-// Таймер
-function timer() {
-    if (!sessionStorage.getItem('startTime')) {
-        sessionStorage.setItem('startTime', Date.now());
-    }
+// SPA
+document.querySelectorAll('a').forEach(function (element) {
+    element.addEventListener('click', function (event) {
+        event.preventDefault();
+        var url = this.getAttribute('href');
 
-    const startTime = sessionStorage.getItem('startTime');
+        history.pushState({ page: url }, '', url);
+        
+        loadPageContent();
+    });
+});
+
+window.onpopstate = loadPageContent;
+
+function loadPageContent() {
+    var a = document.getElementsByClassName('active')
+    a[0].classList.remove('active')
+    let currentUrl = window.location.href + '.html'; 
+    if (currentUrl == 'http://localhost:3000/index.html' || currentUrl == 'http://localhost:3000/.html') {
+        currentUrl = '/activity.html'
+        document.getElementById('index10').classList.add('active')
+    }
+    fetch(currentUrl)
+    .then(response => response.text())  
+    .then(text => {
+        if (text.length) {
+            document.getElementById('container').innerHTML = text;
+            if (currentUrl.endsWith('/map.html')) {
+                initMap();
+                document.getElementById('map10').classList.add('active');
+            }
+            if (currentUrl.endsWith('/timer.html')) {
+                timer()
+                document.getElementById('timer10').classList.add('active')
+            }
+
+            
+        } else {
+            console.log('Error');
+        }
+    })
+    .catch(error => console.error('Ошибка при загрузке контента:', error));
+}
+
+
+window.onload = function() {
+    loadPageContent()
+    startTime = Date.now()
+};
+
+// Таймер
+function timer() { 
     const timeSpentElement = document.getElementById('timeSpent');
 
     const formatTime = (milliseconds) => {
@@ -51,51 +96,3 @@ function timer() {
 
     setInterval(updateTimeSpent, 1000); // Обновляем каждую секунду
 }
-
-
-// SPA
-document.querySelectorAll('a').forEach(function (element) {
-    element.addEventListener('click', function (event) {
-        event.preventDefault();
-        var url = this.getAttribute('href');
-
-        history.pushState({ page: url }, '', url);
-        
-        if (url == '/index.html') url = '/activity.html'
-
-        loadPageContent(url);
-    });
-});
-
-window.addEventListener('popstate', function (event) {
-    if (event.state) {
-        var url = event.state.page;
-
-        if (url == '/index.html') url = '/activity.html'
-        loadPageContent(url);
-    }
-});
-
-function loadPageContent(url) {
-    fetch(url)
-    .then(response => response.text())  
-    .then(text => {
-        if (text.length) {
-            document.getElementById('container').innerHTML = text;
-            if (url == '/map.html') initMap();
-            if (url == '/timer.html') timer();
-        } else {
-            console.log('Error')
-        }
-    })
-    .catch(error => console.error('Ошибка при загрузке контента:', error));
-
-}
-
-window.onload = function() {
-    loadPageContent('/activity.html')
-};
-
-window.addEventListener('hashchange', function() {
-    console.log('fggffg')
-});
